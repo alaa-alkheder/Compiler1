@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Var_define;
+package Java.AST.Var_define;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ public class jsonValue {
 
     String string = null;
     Boolean aBoolean = null;
-    Java.AST.QueryStmt.Var_define.jsonObj varJson = null;
+    Java.AST.Var_define.jsonObj varJson = null;
     Float aFloat = null;
     ArrayList arrayList;
-    Java.AST.QueryStmt.Var_define.varType varType;
+    Java.AST.Var_define.varType varType;
 
     public String getString() {
         return string;
@@ -38,11 +38,11 @@ public class jsonValue {
         this.aBoolean = aBoolean;
     }
 
-    public Java.AST.QueryStmt.Var_define.jsonObj getVarJson() {
+    public Java.AST.Var_define.jsonObj getVarJson() {
         return varJson;
     }
 
-    public void setVarJson(Java.AST.QueryStmt.Var_define.jsonObj varJson) {
+    public void setVarJson(Java.AST.Var_define.jsonObj varJson) {
         this.varJson = varJson;
     }
 
@@ -62,11 +62,11 @@ public class jsonValue {
         this.arrayList = arrayList;
     }
 
-    public Java.AST.QueryStmt.Var_define.varType getVarType() {
+    public Java.AST.Var_define.varType getVarType() {
         return varType;
     }
 
-    public void setVarType(Java.AST.QueryStmt.Var_define.varType varType) {
+    public void setVarType(Java.AST.Var_define.varType varType) {
         this.varType = varType;
     }
 

@@ -1,6 +1,5 @@
-package Java.AST.QueryStmt.FunctionStmt;
+package Java.AST.FunctionStmt;
 
-import Java.AST.QueryStmt.FunctionStmt.Arrgmint;
 import Java.AST.QueryStmt.Statement;
 
 import java.util.ArrayList;

@@ -1,4 +1,10 @@
 package Java.AST.conditionStmt;
 
-public class K_countinu {
+import Java.AST.QueryStmt.Statement;
+
+public class K_Countinu extends Statement {
+    @Override
+    public String toString() {
+        return "K_Countinu";
+    }
 }

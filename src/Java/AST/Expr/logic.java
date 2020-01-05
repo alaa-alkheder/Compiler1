@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Expr;
+package Java.AST.Expr;
 
 public class logic implements Expretion {
     private Expretion right , left;
@@ -21,8 +21,8 @@ String op;
     @Override
     public String toString() {
         return "logic{" +
-                "right=" + right +
-                ", op='" + op + '\'' + ", left=" + left +
+                ", left=" + left +
+                ", op='" + op + '\'' + "right=" + right +
                 '}';
     }
 

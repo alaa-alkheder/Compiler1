@@ -1,9 +1,14 @@
-package Java.AST.QueryStmt;
+package Java.AST.QueryStmt.SqlStmt;
 
+import Java.AST.Expr.Expretion;
+import Java.AST.QueryStmt.SqlStmt.TableConstrent.LimitStmt;
+import Java.AST.QueryStmt.SqlStmt.TableConstrent.ordering;
+import Java.AST.QueryStmt.Statement;
 import generated.SQLParser;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.beans.Expression;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectStmt extends Statement {
@@ -15,7 +20,7 @@ public class SelectStmt extends Statement {
                 "result_column=" + result_column.get(0).getText() +
                 ", fromItem='" + fromItem + '\'' +
 //                ", where=" + where.toString() +
-                ", orderByElements=" +printorderByElements()+
+                ", orderByElements=" + printorderByElements() +
                 '}';
     }
 
@@ -23,13 +28,14 @@ public class SelectStmt extends Statement {
 //    private List<SelectItem> selectItems;
     List<SQLParser.Result_columnContext> result_column;
 
-    private String printorderByElements(){
-        String temp="";
-        for (int i = 0; i <  orderByElements.size(); i++) {
-            temp+=i+" order is "+ orderByElements.get(i).getText()+" , ";
+    private String printorderByElements() {
+        String temp = "";
+        for (int i = 0; i < orderByElements.size(); i++) {
+            temp += i + " order is " + orderByElements.get(i).toString() + " , ";
         }
         return temp;
     }
+
     public List<SQLParser.Result_columnContext> getResult_column() {
         return result_column;
     }
@@ -39,32 +45,23 @@ public class SelectStmt extends Statement {
     }
 
     //    private List<Table> intoTables;
-         private String fromItem;
+    private String fromItem;
     //    private List<Join> joins;
-    public SQLParser.ExprContext where=null;
-
-    //    private GroupByElement groupBy;
-    List<SQLParser.Ordering_termContext> orderByElements;//    private List<OrderByElement> orderByElements;
-
-//    private Expression having;
-//    private Limit limit;
-//    private Offset offset;
+    public Expretion where = null;
+    private GroupByElement groupBy;
+    List<ordering> orderByElements = new ArrayList<>();//    private List<OrderByElement> orderByElements;
+    private Expretion having;
+    private LimitStmt limit;
 
 
-
-
-    public String getWhere() {
-        return ""+ where.getText();
+    public void setWhere(Expretion where) {
+        this.where = where;
     }
 
 
-    public List<SQLParser.Ordering_termContext> getOrderByElements() {
-        return orderByElements;
-    }
+    public void AddOrderByElements(ordering orderByElements) {
 
-    public void setOrderByElements(List<SQLParser.Ordering_termContext> orderByElements) {
-
-        this.orderByElements = orderByElements;
+        this.orderByElements.add(orderByElements);
     }
 
     public void setFromItem(String fromItem) {

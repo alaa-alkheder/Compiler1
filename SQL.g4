@@ -1,4 +1,4 @@
-
+//ssssssss
 grammar SQL;
 
 parse
@@ -19,7 +19,7 @@ sql_stmt_list
 
 
 sql_stmt
-// : ( K_EXPLAIN ( K_QUERY K_PLAN )? )?
+// : ( K_EXPLAIN ( K_QUERY K_PL AN )? )?
  :                                     ( alter_table_stmt
 //                                      | analyze_stmt
 //                                      | attach_stmt
@@ -56,54 +56,54 @@ sql_stmt
                                       )
  ;
 
-stat:
- if_stmt
-|if_stmt_short
-|print_stmt
-|function_call_stmt
-|var_stmt_withscol
-|while_stmt
-|do_while_stmt
-|switch_stmt
-|one_line_instruction
-|for_stmt
-|OPEN_BLOCK CLOSE_BLOCK
-|OPEN_BLOCK stat* CLOSE_BLOCK
-;
-c
- : (stat* return_stmt?)
- |OPEN_BLOCK c CLOSE_BLOCK
-;
-stat_with_return
- : c
- | stat* c
-;
+//stat_forloop:
+// if_stmt
+//|print_stmt
+//|function_call_stmt
+//|var_stmt
+//|while_stmt
+//|do_while_stmt
+//|switch_stmt
+//|one_line_instruction
+//|for_stmt
+//|OPEN_BLOCK CLOSE_BLOCK
+//|OPEN_BLOCK stat_forloop* CLOSE_BLOCK
+//;
+//c
+// : (stat_forloop* return_stmt?)
+// |OPEN_BLOCK c CLOSE_BLOCK
+//;
+//stat_forloop_with_return
+// : c
+// | stat_forloop* c
+//;
 
 stat_forloop
- : (if_stmt_forloop
-  |if_stmt_short_forloop
-  |print_stmt
+ : (
+  print_stmt
+  |if_stmt
   |function_call_stmt
-  |var_stmt_withscol
+  |var_stmt
   |while_stmt
   |one_line_instruction
   |K_CONTINUE SCOL
   |do_while_stmt
   |switch_stmt
   |for_stmt
+  |K_BREAK SCOL
+  |return_stmt
   |OPEN_BLOCK CLOSE_BLOCK
   |OPEN_BLOCK stat_forloop* CLOSE_BLOCK)
-
 ;
-s
- : (stat_forloop* (break_stmt|return_stmt)?)
- |(OPEN_BLOCK s CLOSE_BLOCK)
-;
-stat_withblock_forloop
- : s
- | stat_forloop* s
-;
-
+//s
+// : (stat_forloop* (break_stmt|return_stmt)?)
+// |(OPEN_BLOCK s CLOSE_BLOCK)
+//;
+//stat_forloop_withblock_forloop
+// : s
+// | stat_forloop* s
+//;
+//
 
 
 json_st:
@@ -125,221 +125,264 @@ any_name OPEN_PAR any_name COMMA ( any_name COMMA)* K_FUNCTION  OPEN_PAR any_nam
 ;
 
 arr_stmt
- :any_name OPEN_BRACKETS CLOSE_BRACKETS (ASSIGN ((OPEN_BLOCK (IDENTIFIER|NUMERIC_LITERAL) ( COMMA (IDENTIFIER|NUMERIC_LITERAL))* CLOSE_BLOCK)|select_or_values ))?
+ :any_name OPEN_BRACKETS CLOSE_BRACKETS (ASSIGN (('[' (IDENTIFIER|NUMERIC_LITERAL) ( COMMA (IDENTIFIER|NUMERIC_LITERAL))* ']')|select_or_values ))?
  ;
 var_stmt
-: K_VAR ( (any_name  (ASSIGN (math_expr0|math_expr1|math_expr1_withbrackets|json_atmt|higer_order_function_stmt|select_or_values))? ) |arr_stmt)
-(COMMA ((any_name (ASSIGN (math_expr0|math_expr1|math_expr1_withbrackets|json_atmt|higer_order_function_stmt|select_or_values))?) |arr_stmt ))*
+: K_VAR ((any_name (ASSIGN var_body)?) |arr_stmt ) (',' (  (any_name (ASSIGN var_body)?)|arr_stmt ))* SCOL
 ;
-var_stmt_withscol
- :var_stmt SCOL
-;
-print_stmt
- : K_PRINT OPEN_PAR ((result_mathematic|'"' any_name'"'|NUMERIC_LITERAL) (PLUS(result_mathematic|'"' IDENTIFIER'"'|NUMERIC_LITERAL))* )*CLOSE_PAR SCOL
+var_body:
+math_expr |expr_condition|json_atmt  |if_stmt_short  |higer_order_function_stmt  |select_or_values  |function_call_stmt
 ;
 
+print_stmt
+ : K_PRINT OPEN_PAR print_body (PLUS print_body)*CLOSE_PAR SCOL
+;
+call_array:
+any_name '[' math_expr']'
+;
+call_json:
+any_name (DOT any_name)*
+;
+print_body:
+(math_expr|if_stmt_short|expr_condition|call_json|call_array)
+;
 function_head:
 OPEN_PAR arguments_stmt? CLOSE_PAR
 ;
 function_body:
-OPEN_BLOCK function_stmt? stat* function_stmt? return_stmt CLOSE_BLOCK
+OPEN_BLOCK function_stmt? stat_forloop* function_stmt? return_stmt CLOSE_BLOCK
 ;
 function_stmt:
 any_name OPEN_PAR arguments_stmt? CLOSE_PAR
-OPEN_BLOCK stat* return_stmt? CLOSE_BLOCK
+OPEN_BLOCK stat_forloop* return_stmt? CLOSE_BLOCK
 ;
 function_call_stmt
- : any_name OPEN_PAR params_stmt? CLOSE_PAR SCOL
+ : any_name OPEN_PAR (params_stmt (','params_stmt)*)? CLOSE_PAR SCOL
 ;
+
 params_stmt
- : any_name (COMMA any_name)* (COMMA any_name ASSIGN NUMERIC_LITERAL)*
+ :  math_expr|expr_condition|K_NULL
+;
+arguments_body_defult_paremeter:
+K_VAR any_name ASSIGN math_expr
+|K_VAR any_name ASSIGN K_NULL
+;
+arguments_body:
+K_VAR any_name(','K_VAR any_name)*
+|(K_VAR any_name) (','K_VAR any_name)* (','arguments_body_defult_paremeter)*
+|arguments_body_defult_paremeter (','arguments_body_defult_paremeter)*
 ;
 arguments_stmt
- : (K_VAR any_name (COMMA K_VAR any_name)* (COMMA K_VAR any_name ASSIGN (NUMERIC_LITERAL|IDENTIFIER))*)| K_VAR any_name ASSIGN NUMERIC_LITERAL(COMMA K_VAR any_name ASSIGN (NUMERIC_LITERAL|IDENTIFIER))*
+ :arguments_body
 ;
-
-
+loop_Bady:
+( OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop)
+;
+increment:
+math_expr_EQ
+;
 for_stmt:
-K_FOR OPEN_PAR   (var_stmt|assingment_rule_without_scol|math_expr_plus_withoutbrackets|math_expr2|IDENTIFIER)? SCOL (logic_resault)? SCOL  (var_stmt|math_expr_plus_withoutbrackets|math_expr2|assingment_rule_without_scol)?  CLOSE_PAR
-( one_line_instruction| return_stmt|break_stmt|OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop)
+K_FOR OPEN_PAR   ((K_VAR any_name ASSIGN math_expr|math_expr_EQ)? SCOL (expr_condition)? SCOL  increment?)  CLOSE_PAR
+loop_Bady
 ;
 
 do_while_stmt:
 K_DO
- ( one_line_instruction| return_stmt|break_stmt|OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop)
-  K_WHILE '('(logic_resault)  ')' SCOL
+OPEN_BLOCK
+stat_forloop*
+CLOSE_BLOCK
+  K_WHILE '('(expr_condition)  ')' SCOL
 ;
 
 while_stmt
 :
- K_WHILE '('(logic_resault)  ')'  ( one_line_instruction| return_stmt|break_stmt|OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop)
+ K_WHILE '('(expr_condition) ')'  loop_Bady
 ;
 
 condition_block:
-'('(logic_resault) ')'  ( one_line_instruction|return_stmt| OPEN_BLOCK stat_with_return CLOSE_BLOCK|stat)
+'('(expr_condition) ')'
 ;
-condition_block_forloop:
-'('(logic_resault) ')'  ( one_line_instruction| return_stmt|break_stmt|OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop)
+//condition_block_forloop:
+//'('(expr_condition) ')'  (OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop)
+//;
+
+if_body:
+(OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop)
+;
+if_else_if:
+K_ELSE if_stmt
+;
+if_else:
+K_ELSE if_body
 ;
 if_stmt
- : K_IF condition_block (K_ELSE K_IF condition_block)* (K_ELSE ( one_line_instruction|return_stmt| OPEN_BLOCK stat_with_return CLOSE_BLOCK|stat))?
+ : K_IF condition_block if_body (if_else|if_else_if)?
 ;
-if_stmt_forloop
- : K_IF condition_block_forloop (K_ELSE K_IF condition_block_forloop)* (K_ELSE ( one_line_instruction| return_stmt|break_stmt|OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop))?
-;
+//if_stmt_forloop
+// : K_IF condition_block_forloop (K_ELSE K_IF condition_block_forloop)* (K_ELSE OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop)?
+//;
 if_stmt_short
- :OPEN_PAR logic_resault CLOSE_PAR '?' ( one_line_instruction|return_stmt| OPEN_BLOCK stat_with_return CLOSE_BLOCK|stat)  (COMMA   ( one_line_instruction|return_stmt| OPEN_BLOCK stat_with_return CLOSE_BLOCK|stat))?
+ :OPEN_PAR if_stmt_short CLOSE_PAR
+ |expr_condition'?' if_stmt_short_body  (':'if_stmt_short_body)?
 ;
-if_stmt_short_for_return
- :OPEN_PAR logic_resault CLOSE_PAR '?' (IDENTIFIER|NUMERIC_LITERAL)  (COMMA   ( IDENTIFIER|NUMERIC_LITERAL))?
+if_stmt_short_head:
+OPEN_PAR if_stmt_short_head CLOSE_PAR
+|expr_condition
 ;
-if_stmt_short_forloop
- :OPEN_PAR logic_resault CLOSE_PAR '?' ( one_line_instruction|return_stmt| OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop)  (COMMA   ( one_line_instruction|return_stmt| OPEN_BLOCK stat_withblock_forloop CLOSE_BLOCK|stat_forloop))?
+if_stmt_short_body:
+OPEN_PAR if_stmt_short_body CLOSE_PAR
+|math_expr|if_stmt_short|expr_condition
 ;
+
+//if_stmt_short_forloop
+// :((OPEN_PAR expr_condition CLOSE_PAR)|expr_condition) '?' (  OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop)  (':'   (OPEN_BLOCK stat_forloop* CLOSE_BLOCK|stat_forloop))?
+//;
 switch_stmt
- :K_SWITCH OPEN_PAR ( result_mathematic) CLOSE_PAR
+ :K_SWITCH OPEN_PAR (math_expr_EQ|math_expr) CLOSE_PAR
   OPEN_BLOCK
- (K_CASE (math_expr0|'"'IDENTIFIER'"')':' (  return_stmt|break_stmt|stat_withblock_forloop|one_line_instruction )
- (K_CASE (math_expr0|'"'IDENTIFIER'"')':' ( return_stmt|break_stmt| stat_withblock_forloop|one_line_instruction  ) )*
- (K_DEFAULT ':' (  return_stmt|break_stmt| stat_withblock_forloop |one_line_instruction ) )? )*
+  ((K_CASE (math_expr)':' (stat_forloop*) )*)?
+ (K_DEFAULT ':'(stat_forloop* ))?
  CLOSE_BLOCK
 ;
-break_stmt
- :K_BREAK SCOL
- |OPEN_BLOCK break_stmt CLOSE_BLOCK
-;
-
 return_stmt
- :K_RETURN (if_stmt_short_for_return|math_expr2|math_expr2_withbrackets|math_expr_plus|assingment_rule_without_scol|logic_all|NUMERIC_LITERAL|K_NULL) SCOL
- | OPEN_BLOCK return_stmt CLOSE_BLOCK
+ :K_RETURN (if_stmt_short|math_expr|expr_condition|K_NULL) SCOL
+// | OPEN_BLOCK return_stmt CLOSE_BLOCK
 ;
 one_line_instruction
- :((math_expr2|math_expr2_withbrackets|math_expr_plus|assingment_rule_without_scol) SCOL)
-;
+ :(((any_name (ASSIGN var_body)?) |arr_stmt )
+  |(math_expr_EQ))
+  SCOL
 
+;
 math_op0
  : ( '++' | '--' )
 ;
 
-math_op1
- : ( '*' | '/' | '%' )
-   | ( '+' | '-' )
-;
+//math_op1
+// : ( '*' | '/' | '%' )
+//   | ( '+' | '-' )
+//;
+//
+//math_op2
+// : ( '*=' | '/=' | '%=' )
+//   | ( '+=' | '-=' )
+//;
+//
+//math_op3
+// : ( '<' | '<=' | '>' | '>=' )
+// ;
+//
+//logic_operator1
+// :  ( '==' | '!=' )
+//;
+//
+//logic_operator2
+// :  ('&&' | '||' )
+//;
+//
+//math_math_expr
+// :  NUMERIC_LITERAL
+// | '(' DIGIT ')'
+// | IDENTIFIER
+// | '(' IDENTIFIER ')'
+// | '('math_math_expr ')'
+//;
 
-math_op2
- : ( '*=' | '/=' | '%=' )
-   | ( '+=' | '-=' )
-;
-
-math_op3
- : ( '<' | '<=' | '>' | '>=' )
- ;
-
-logic_operator1
- :  ( '==' | '!=' )
-;
-
-logic_operator2
- :  ('&&' | '||' )
-;
-
-math_expr0
- :  NUMERIC_LITERAL
- | '(' DIGIT ')'
- | IDENTIFIER
- | '(' IDENTIFIER ')'
- | '('math_expr0 ')'
-;
-
-math_expr_all
- : math_expr1_withbrackets|math_expr_plus|math_expr2_withbrackets|math_expr0|assingment_rule_with_bracket
-;
+//math_expr_all
+// : math_expr_Add_one|math_expr2_withbrackets|math_math_expr|assingment_rule_with_bracket
+//;
 identifier
- : IDENTIFIER
-   | '(' IDENTIFIER ')'
+ :any_name|
+ '(' math_expr_logic ')'
 ;
-math_expr_plus
- : math_op0 identifier
- | identifier math_op0
- | OPEN_PAR math_op0  identifier CLOSE_PAR
- | OPEN_PAR identifier math_op0  CLOSE_PAR
- | OPEN_PAR math_expr_plus CLOSE_PAR
+math_expr_Add_one:
+math_expr_Add_one_dencrement
+|math_expr_Add_one_increment
+
 ;
-math_expr_plus_withoutbrackets
- : math_op0 identifier
- | identifier math_op0
- | math_op0  identifier
- |  identifier math_op0
+math_expr_Add_one_increment
+ :  identifier math_op0
+// | OPEN_PAR math_expr_Add_one_increment CLOSE_PAR
 ;
+math_expr_Add_one_dencrement
+ :  math_op0 identifier
+// | OPEN_PAR math_expr_Add_one_dencrement CLOSE_PAR
+;
+//math_expr_Add_one_withoutbrackets
+// : math_op0 identifier
+// | identifier math_op0
+//;
 
 // x+5|5+5
-math_expr1
- : math_expr_all math_op1 math_expr_all (math_op1 math_expr_all)*
-;
-math_expr1_withbrackets
- : '(' math_expr1 ')'
- |'(' math_expr1_withbrackets ')'
-;
+//math_expr1
+// : math_expr_all math_op1 math_expr_all (math_op1 math_expr_all)*
+// |'(' math_expr1 ')'
+//
+//;
+//math_expr1_withbrackets
+// : '(' math_expr1 ')'
+// |'(' math_expr1_withbrackets ')'
+//;
 
 // x+= y | (x+5)
-math_expr2
- : any_name  math_op2 ( math_expr_all | math_expr1|assingment_rule_without_bracket )
-;
-math_expr2_withbrackets
- : '(' math_expr2')'
-// | math_expr1_withbrackets
- | '(' math_expr2_withbrackets ')'
-;
+//math_expr2
+// : any_name  math_op2 ( math_expr_all | math_expr1|assingment_rule_without_bracket )
+//;
+//math_expr2_withbrackets
+// : '(' math_expr2')'
+//// | math_expr1_withbrackets
+// | '(' math_expr2_withbrackets ')'
+//;
 
 // > < >= <=
-math_expr3
- : ( math_expr_all| math_expr1) math_op3 (math_expr_all| math_expr1)
-;
-math_expr3_withbrackets
- : '(' math_expr3')'
- | '(' math_expr3_withbrackets ')'
-;
-math_expr_without_digit
- :math_expr1|math_expr1_withbrackets|math_expr2|math_expr2_withbrackets|math_expr_plus|identifier
-;
-
-result_mathematic
- : math_expr_all | math_expr1|math_expr2
-;
+//math_expr3
+// : ( math_expr_all| math_expr1) math_op3 (math_expr_all| math_expr1)
+//;
+//math_expr3_withbrackets
+// : '(' math_expr3')'
+// | '(' math_expr3_withbrackets ')'
+//;
+//math_expr_without_digit
+// :math_expr1|math_expr2|math_expr2_withbrackets|math_expr_Add_one|identifier
+//;
+//
+//result_mathematic
+// : math_expr_all | math_expr1|math_expr2
+//;
 
 // ==  |  !=
-logic_expr1
- : (assingment_rule_with_bracket|math_expr_all|math_expr1 |K_TRUE |K_FALSE ) logic_operator1 (assingment_rule_with_bracket|math_expr1|math_expr_all|K_TRUE |K_FALSE )
- | ( math_expr3 | math_expr3_withbrackets ) logic_operator1 ( math_expr3 | math_expr3_withbrackets )
- | math_expr3
-;
-logic_expr1_withbracets
- : '(' logic_expr1 ')'
- | '(' logic_expr1_withbracets ')'
-;
-
-logic_all
- :identifier| logic_expr1 | logic_expr1_withbracets |K_TRUE |K_FALSE
-;
-// &&  |  ||
-logic_expr2
- : logic_all logic_operator2 logic_all (logic_operator2 logic_all)*
- | logic_expr1
-;
-logic_expr2_withbrackets
- : OPEN_PAR logic_expr2 CLOSE_PAR
- | logic_expr1_withbracets
- | '(' logic_expr2_withbrackets ')'
-;
-logic_resault
- : logic_expr2 | logic_expr2_withbrackets |K_TRUE |K_FALSE|identifier
-;
+//logic_expr1
+// : (assingment_rule_with_bracket|math_expr_all|math_expr1 |K_TRUE |K_FALSE ) logic_operator1 (assingment_rule_with_bracket|math_expr1|math_expr_all|K_TRUE |K_FALSE )
+// | ( math_expr3 | math_expr3_withbrackets ) logic_operator1 ( math_expr3 | math_expr3_withbrackets )
+// | math_expr3
+//;
+//logic_expr1_withbracets
+// : '(' logic_expr1 ')'
+// | '(' logic_expr1_withbracets ')'
+//;
+//
+//logic_all
+// :identifier| logic_expr1 | logic_expr1_withbracets |K_TRUE |K_FALSE
+//;
+//// &&  |  ||
+//logic_expr2
+// : logic_all logic_operator2 logic_all (logic_operator2 logic_all)*
+// | logic_expr1
+//;
+//logic_expr2_withbrackets
+// : OPEN_PAR logic_expr2 CLOSE_PAR
+// | logic_expr1_withbracets
+// | '(' logic_expr2_withbrackets ')'
+//;
+//logic_resault
+// : logic_expr2 | logic_expr2_withbrackets |K_TRUE |K_FALSE|identifier
+//;
 
 assingment_rule_without_bracket
- : identifier ASSIGN result_mathematic
+ : identifier ASSIGN expr_condition
 ;
 assingment_rule_with_bracket
- : OPEN_PAR identifier '='result_mathematic CLOSE_PAR
+ : OPEN_PAR identifier '='expr_condition CLOSE_PAR
  | OPEN_PAR assingment_rule_with_bracket CLOSE_PAR
 ;
 assingment_rule_with_scol
@@ -405,8 +448,8 @@ create_table_stmt
  : K_CREATE  K_TABLE ( K_IF K_NOT K_EXISTS )?
    ( database_name '.' )? table_name
 //   ( '(' column_def ( ',' table_constraint | ',' column_def )* ')' ( K_WITHOUT IDENTIFIER )?
-   ( '(' column_def ( ',' table_constraint | ',' column_def )* ')'
-   | K_AS select_stmt
+   ( '(' column_def ( ',' table_constraint | ',' column_def )* ')'| K_AS factored_select_stmt
+
 //   ) (unknown)?
    )
  ;
@@ -480,9 +523,9 @@ insert_stmt
 //                | K_INSERT K_OR K_FAIL
 //                | K_INSERT K_OR K_IGNORE ) K_INTO
 : K_INSERT K_INTO
-   ( database_name '.' )? table_name ( '(' column_name ( ',' column_name )* ')' )?
+   ( database_name '.' )? table_name ( '(' column_name ( ',' column_name )* ')' )       ?
    ( K_VALUES '(' expr ( ',' expr )* ')' ( ',' '(' expr ( ',' expr )* ')' )*
-   | select_stmt
+   | factored_select_stmt
    | K_DEFAULT K_VALUES
    )
  ;
@@ -531,6 +574,11 @@ select_or_values
    ( K_GROUP K_BY expr ( ',' expr )* ( K_HAVING expr )? )?
  | K_VALUES '(' expr ( ',' expr )* ')' ( ',' '(' expr ( ',' expr )* ')' )*
  ;
+call_expr:
+expr
+;
+
+
 
 update_stmt
 // : with_clause? K_UPDATE ( K_OR K_ROLLBACK
@@ -559,14 +607,17 @@ update_stmt
 // ;
 
 column_def
- : column_name ( column_constraint | type_name )*
+ : column_name ( column_constraint  | type_name )*
  ;
 
 type_name
- : name ( '(' signed_number (any_name)? ')'
+ : type_name_name ( '(' signed_number (any_name)? ')'
          | '(' signed_number (any_name)? ',' signed_number (any_name)? ')' )?
  ;
+type_name_name:
+any_name
 
+;
 column_constraint
  : ( K_CONSTRAINT name )?
    ( column_constraint_primary_key
@@ -630,9 +681,52 @@ column_default_value
     AND
     OR
 */
+
+expr_condition:
+  expr_condition ('&' | '|'  |K_AND|K_OR)expr_condition
+ | math_expr_logic ( '<<' | '>>'  ) math_expr_logic
+ | math_expr_logic ( '<' | '<=' | '>' | '>=' ) math_expr_logic
+  | expr_condition (  '==' | '!=' | '<>'  ) expr_condition
+  | math_expr_logic (  '==' | '!=' | '<>'  ) math_expr_logic
+ |OPEN_PAR expr_condition CLOSE_PAR
+|any_name
+|call_json
+|call_array
+  |K_TRUE
+  |K_FALSE
+;
+math_expr_EQ:
+any_name ( '*=' | '/=' |'%=' ) math_expr
+|any_name ( '+=' | '-='|'=' ) math_expr
+| math_expr_Add_one
+|OPEN_PAR math_expr_EQ CLOSE_PAR
+;
+math_expr
+: NUMERIC_LITERAL
+|any_name
+|call_json
+|call_array
+   |math_expr ( '*' | '/' | '%' ) math_expr
+   | math_expr ( '+' | '-' ) math_expr
+   |OPEN_PAR math_expr CLOSE_PAR
+| math_expr_Add_one
+;
+math_expr_logic:
+NUMERIC_LITERAL
+|any_name
+|call_json
+|call_array
+ |math_expr_logic ( '*' | '/' | '%' ) math_expr_logic
+   | math_expr_logic ( '+' | '-' ) math_expr_logic
+    | any_name ( '*=' | '/=' |'%=' |'+='|'-='|'=') math_expr_logic
+   | math_expr_Add_one
+
+   |OPEN_PAR math_expr_logic CLOSE_PAR
+;
+
+
 expr
  : literal_value
- | BIND_PARAMETER
  | ( ( database_name '.' )? table_name '.' )? column_name
  | unary_operator expr
  | expr '||' expr
@@ -640,25 +734,12 @@ expr
  | expr ( '+' | '-' ) expr
  | expr ( '<<' | '>>' | '&' | '|' ) expr
  | expr ( '<' | '<=' | '>' | '>=' ) expr
- | expr ( '=' | '==' | '!=' | '<>' | K_IS | K_IS K_NOT | K_IN | K_LIKE | K_GLOB | K_MATCH | K_REGEXP ) expr
+ | expr ( '=' | '==' | '!=' | '<>' | K_IS K_NOT | K_IS | K_IN | K_LIKE | K_GLOB | K_MATCH | K_REGEXP ) expr
  | expr K_AND expr
  | expr K_OR expr
  | function_name '(' ( K_DISTINCT? expr ( ',' expr )* | '*' )? ')'
  | '(' expr ')'
-// | K_CAST '(' expr K_AS type_name ')'
-// | expr K_COLLATE collation_name
-// | expr K_NOT? ( K_LIKE | K_GLOB | K_REGEXP | K_MATCH ) expr ( K_ESCAPE expr )?
-// | expr ( K_ISNULL | K_NOTNULL | K_NOT K_NULL )
-// | expr K_IS K_NOT? expr
-// | expr K_NOT? K_BETWEEN expr K_AND expr
-// | expr K_NOT? K_IN ( '(' ( select_stmt
-//                          | expr ( ',' expr )*
-//                          )?
-//                      ')'
-//                    | ( database_name '.' )? table_name )
- | ( ( K_NOT )? K_EXISTS )? '(' select_stmt ')'
-// | K_CASE expr? ( K_WHEN expr K_THEN expr )+ ( K_ELSE expr )? K_END
-// | raise_function
+ | ( ( K_NOT )? K_EXISTS )? '(' factored_select_stmt ')'
  ;
 
 foreign_key_clause
@@ -668,7 +749,7 @@ foreign_key_clause
                                     | K_CASCADE
                                     | K_RESTRICT
                                     | K_NO K_ACTION )
-     | K_MATCH name
+                                    | K_MATCH name
      )
    )*
    ( K_NOT? K_DEFERRABLE ( K_INITIALLY K_DEFERRED | K_INITIALLY K_IMMEDIATE )? K_ENABLE? )?
@@ -699,12 +780,12 @@ table_constraint
  ;
 
 table_constraint_primary_key
- // : K_PRIMARY K_KEY '(' indexed_column ( ',' indexed_column )* ')' conflict_clause
+ // : K_PRIMARY K_KEY '(' ind exed_column ( ',' indexed_column )* ')' conflict_clause
   : K_PRIMARY K_KEY '(' indexed_column ( ',' indexed_column )* ')'
  ;
 
 table_constraint_foreign_key
- : K_FOREIGN K_KEY '(' fk_origin_column_name ( ',' fk_origin_column_name )* ')' foreign_key_clause
+ : K_FOREIGN K_KEY  '(' fk_origin_column_name ( ',' fk_origin_column_name )* ')' foreign_key_clause
  ;
 
 table_constraint_unique
@@ -966,9 +1047,9 @@ keyword
 // TODO check all names below
 
 //[a-zA-Z_0-9\t \-\[\]\=]+
-unknown
- : .+
- ;
+//unknown
+// : .+
+// ;
 
 name
  : any_name
@@ -1065,6 +1146,13 @@ ASSIGN : '=';
 STAR : '*';
 PLUS : '+';
 MINUS : '-';
+STAREQ : '*=';
+PLUSEQ : '+=';
+MINUSEQ : '-=';
+PLUSPLUS : '++';
+MINUSMINUS : '--';
+DIVEQ : '/=';
+MODEQ : '%=';
 TILDE : '~';
 PIPE2 : '||';
 DIV : '/';
@@ -1301,7 +1389,3 @@ fragment W : [wW];
 fragment X : [xX];
 fragment Y : [yY];
 fragment Z : [zZ];
-
-
-
-

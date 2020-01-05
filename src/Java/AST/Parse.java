@@ -1,5 +1,6 @@
 package Java.AST;
 
+import Java.AST.FunctionStmt.FunctionDeclaration;
 import Java.AST.QueryStmt.Statement;
 
 import java.util.ArrayList;
