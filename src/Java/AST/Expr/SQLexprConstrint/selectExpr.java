@@ -1,5 +1,6 @@
 package Java.AST.Expr.SQLexprConstrint;
 
+import Java.AST.QueryStmt.SqlStmt.Factored_select_stmt;
 import Java.AST.QueryStmt.SqlStmt.SelectStmt;
 
 public class selectExpr extends sqlExprtion {
@@ -23,9 +24,9 @@ public class selectExpr extends sqlExprtion {
         K_EXISTS = k_EXISTS;
     }
 
-    public void setSelectStmt(SelectStmt selectStmt) {
+    public void setSelectStmt(Factored_select_stmt selectStmt) {
         this.selectStmt = selectStmt;
     }
 
-    SelectStmt selectStmt;
+    Factored_select_stmt selectStmt;
 }

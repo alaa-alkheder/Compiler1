@@ -19,6 +19,7 @@ public class callFunction extends Statement {
     }
 
     private String printParameter() {
+        System.out.println("DDDDD" + parameter.size());
         String s = "";
         for (Expretion e :
                 parameter) {

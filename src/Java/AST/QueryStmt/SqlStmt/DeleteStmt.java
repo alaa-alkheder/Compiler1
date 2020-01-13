@@ -18,9 +18,8 @@ public class DeleteStmt extends Statement {
     @Override
     public String toString() {
         return "DeleteStmt{" +
-                "fromItem='" + fromItem + '\'' +
-                ((where != null) ? ("where='" + where.toString()) : "") + '\t' +
-
+                "fromItem='" + fromItem +
+                ((where != null) ? ("where='" + where.toString()) : "") +
                 '}';
     }
 

@@ -82,7 +82,7 @@ stat_forloop
  : (
   print_stmt
   |if_stmt
-  |function_call_stmt
+  |function_call_stmt SCOL
   |var_stmt
   |while_stmt
   |one_line_instruction
@@ -117,21 +117,30 @@ json_st
 
 CLOSE_BLOCK
 ;
+higer_order_function_stmt_head:
+any_name (COMMA any_name)*
 
+;
 higer_order_function_stmt:
-any_name OPEN_PAR any_name COMMA ( any_name COMMA)* K_FUNCTION  OPEN_PAR any_name (COMMA any_name)* CLOSE_PAR function_body
+any_name OPEN_PAR higer_order_function_stmt_head COMMA K_FUNCTION  OPEN_PAR any_name (COMMA any_name)* CLOSE_PAR function_body
 
  CLOSE_PAR
 ;
 
+
+x:
+any_name OPEN_BRACKETS CLOSE_BRACKETS (ASSIGN (('[' (IDENTIFIER|NUMERIC_LITERAL) ( COMMA (IDENTIFIER|NUMERIC_LITERAL))* ']')|select_or_values ))?
+;
+
 arr_stmt
- :any_name OPEN_BRACKETS CLOSE_BRACKETS (ASSIGN (('[' (IDENTIFIER|NUMERIC_LITERAL) ( COMMA (IDENTIFIER|NUMERIC_LITERAL))* ']')|select_or_values ))?
+ :array1
+ //
  ;
 var_stmt
-: K_VAR ((any_name (ASSIGN var_body)?) |arr_stmt ) (',' (  (any_name (ASSIGN var_body)?)|arr_stmt ))* SCOL
+: K_VAR ((any_name (ASSIGN var_body)?) |x ) (',' (  (any_name (ASSIGN var_body)?)|x ))* SCOL
 ;
 var_body:
-math_expr |expr_condition|json_atmt  |if_stmt_short  |higer_order_function_stmt  |select_or_values  |function_call_stmt
+math_expr |expr_condition|json_atmt  |if_stmt_short  |higer_order_function_stmt  |select_core  |function_call_stmt
 ;
 
 print_stmt
@@ -157,7 +166,7 @@ any_name OPEN_PAR arguments_stmt? CLOSE_PAR
 OPEN_BLOCK stat_forloop* return_stmt? CLOSE_BLOCK
 ;
 function_call_stmt
- : any_name OPEN_PAR (params_stmt (','params_stmt)*)? CLOSE_PAR SCOL
+ : any_name OPEN_PAR (params_stmt (','params_stmt)*)? CLOSE_PAR
 ;
 
 params_stmt
@@ -191,12 +200,12 @@ K_DO
 OPEN_BLOCK
 stat_forloop*
 CLOSE_BLOCK
-  K_WHILE '('(expr_condition)  ')' SCOL
+  K_WHILE  (expr_condition)   SCOL
 ;
 
 while_stmt
 :
- K_WHILE '('(expr_condition) ')'  loop_Bady
+ K_WHILE  (expr_condition)    loop_Bady
 ;
 
 condition_block:
@@ -240,16 +249,22 @@ OPEN_PAR if_stmt_short_body CLOSE_PAR
 switch_stmt
  :K_SWITCH OPEN_PAR (math_expr_EQ|math_expr) CLOSE_PAR
   OPEN_BLOCK
-  ((K_CASE (math_expr)':' (stat_forloop*) )*)?
+  (case_stmt*)?
  (K_DEFAULT ':'(stat_forloop* ))?
  CLOSE_BLOCK
+;
+case_stmt:
+(K_CASE (math_expr)':' (stat_forloop*) )
 ;
 return_stmt
  :K_RETURN (if_stmt_short|math_expr|expr_condition|K_NULL) SCOL
 // | OPEN_BLOCK return_stmt CLOSE_BLOCK
 ;
+array1:
+any_name '[]'ASSIGN'[' math_expr (COMMA math_expr)* ']'
+;
 one_line_instruction
- :(((any_name (ASSIGN var_body)?) |arr_stmt )
+ :(((any_name (ASSIGN var_body)?) |array1 )
   |(math_expr_EQ))
   SCOL
 
@@ -377,33 +392,31 @@ math_expr_Add_one_dencrement
 //logic_resault
 // : logic_expr2 | logic_expr2_withbrackets |K_TRUE |K_FALSE|identifier
 //;
-
-assingment_rule_without_bracket
- : identifier ASSIGN expr_condition
-;
-assingment_rule_with_bracket
- : OPEN_PAR identifier '='expr_condition CLOSE_PAR
- | OPEN_PAR assingment_rule_with_bracket CLOSE_PAR
-;
-assingment_rule_with_scol
- : (assingment_rule_without_bracket | assingment_rule_with_bracket) CLOSE_BLOCK SCOL
-;
-assingment_rule_without_scol
- : (assingment_rule_without_bracket | assingment_rule_with_bracket)
-;
+//
+//assingment_rule_without_bracket
+// : identifier ASSIGN expr_condition
+//;
+//assingment_rule_with_bracket
+// : OPEN_PAR identifier '='expr_condition CLOSE_PAR
+// | OPEN_PAR assingment_rule_with_bracket CLOSE_PAR
+//;
+//assingment_rule_with_scol
+// : (assingment_rule_without_bracket | assingment_rule_with_bracket) CLOSE_BLOCK SCOL
+//;
+//assingment_rule_without_scol
+// : (assingment_rule_without_bracket | assingment_rule_with_bracket)
+//;
 
 
 
 
 alter_table_stmt
-// : K_ALTER K_TABLE K_ONLY? ( database_name '.' )? source_table_name
  : K_ALTER K_TABLE  ( database_name '.' )? source_table_name
    ( K_RENAME K_TO new_table_name
    | alter_table_add
    | alter_table_add_constraint
    | K_ADD K_COLUMN? column_def
    )
-//   K_ENABLE? (unknown)?
  ;
 
 alter_table_add_constraint
@@ -567,6 +580,14 @@ select_stmt
    ( K_LIMIT expr ( ( K_OFFSET | ',' ) expr )? )?
  ;
 
+ /*
+ : K_SELECT ( K_DISTINCT | K_ALL )? result_column ( ',' result_column )*
+    ( K_FROM ( table_or_subquery ( ',' table_or_subquery )* | join_clause ) )?
+    ( K_WHERE expr )?
+    ( K_GROUP K_BY group_expr ( K_HAVING expr )? )?
+  | K_VALUES  values_selectCore ( ',' values_selectCore )*
+ */
+
 select_or_values
  : K_SELECT ( K_DISTINCT | K_ALL )? result_column ( ',' result_column )*
    ( K_FROM ( table_or_subquery ( ',' table_or_subquery )* | join_clause ) )?
@@ -611,11 +632,11 @@ column_def
  ;
 
 type_name
- : type_name_name ( '(' signed_number (any_name)? ')'
-         | '(' signed_number (any_name)? ',' signed_number (any_name)? ')' )?
+ : any_name ( '(' type_name_value')'
+         | '(' type_name_value ',' type_name_value ')' )?
  ;
-type_name_name:
-any_name
+type_name_value:
+ signed_number (any_name)?
 
 ;
 column_constraint
@@ -681,7 +702,11 @@ column_default_value
     AND
     OR
 */
+array_json:
 
+call_json
+|call_array
+;
 expr_condition:
   expr_condition ('&' | '|'  |K_AND|K_OR)expr_condition
  | math_expr_logic ( '<<' | '>>'  ) math_expr_logic
@@ -690,8 +715,8 @@ expr_condition:
   | math_expr_logic (  '==' | '!=' | '<>'  ) math_expr_logic
  |OPEN_PAR expr_condition CLOSE_PAR
 |any_name
+call_array
 |call_json
-|call_array
   |K_TRUE
   |K_FALSE
 ;
@@ -740,17 +765,24 @@ expr
  | function_name '(' ( K_DISTINCT? expr ( ',' expr )* | '*' )? ')'
  | '(' expr ')'
  | ( ( K_NOT )? K_EXISTS )? '(' factored_select_stmt ')'
- ;
+ |expr K_NOT? K_IN ( '(' ( factored_select_stmt | expr ( ',' expr )* )? ')' | ( database_name '.' )? table_name )
 
-foreign_key_clause
- : K_REFERENCES ( database_name '.' )? foreign_table ( '(' fk_target_column_name ( ',' fk_target_column_name )* ')' )?
-   ( ( K_ON ( K_DELETE | K_UPDATE ) ( K_SET K_NULL
+ ;
+foreign_key_clause_value:
+
+( K_ON ( K_DELETE | K_UPDATE ) ( K_SET K_NULL
                                     | K_SET K_DEFAULT
                                     | K_CASCADE
                                     | K_RESTRICT
                                     | K_NO K_ACTION )
                                     | K_MATCH name
      )
+;
+
+
+foreign_key_clause
+ : K_REFERENCES ( database_name '.' )? foreign_table ( '(' fk_target_column_name ( ',' fk_target_column_name )* ')' )?
+   ( foreign_key_clause_value
    )*
    ( K_NOT? K_DEFERRABLE ( K_INITIALLY K_DEFERRED | K_INITIALLY K_IMMEDIATE )? K_ENABLE? )?
  ;
@@ -832,13 +864,9 @@ result_column
  ;
 
 table_or_subquery
- : ( database_name '.' )? table_name ( K_AS? table_alias )?
-   ( K_INDEXED K_BY index_name
-   | K_NOT K_INDEXED )?
- | '(' ( table_or_subquery ( ',' table_or_subquery )*
-       | join_clause )
-   ')' ( K_AS? table_alias )?
- | '(' select_stmt ')' ( K_AS? table_alias )?
+ : ( database_name '.' )? table_name ( K_AS? table_alias )?( K_INDEXED K_BY index_name | K_NOT K_INDEXED )?
+ | '(' ( table_or_subquery ( ',' table_or_subquery )* | join_clause )')' ( K_AS? table_alias )?
+ | '(' factored_select_stmt ')' ( K_AS? table_alias )?
  ;
 
 join_clause
@@ -861,10 +889,18 @@ select_core
  : K_SELECT ( K_DISTINCT | K_ALL )? result_column ( ',' result_column )*
    ( K_FROM ( table_or_subquery ( ',' table_or_subquery )* | join_clause ) )?
    ( K_WHERE expr )?
-   ( K_GROUP K_BY expr ( ',' expr )* ( K_HAVING expr )? )?
- | K_VALUES '(' expr ( ',' expr )* ')' ( ',' '(' expr ( ',' expr )* ')' )*
+   ( K_GROUP K_BY group_expr ( K_HAVING expr )? )?
+ | K_VALUES  values_selectCore ( ',' values_selectCore )*
  ;
+group_expr:
+expr ( ',' expr )*
+;
 
+
+values_selectCore:
+'(' expr ( ',' expr )* ')'
+
+;
 //compound_operator
 // : K_UNION
 // | K_UNION K_ALL

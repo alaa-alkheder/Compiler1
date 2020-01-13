@@ -16,8 +16,8 @@ public class column_def extends Node {
     @Override
     public String toString() {
         return "column_def{" +
-                "column_name='" + column_name + array.size() + '\'' +
-                ((array.size() > 0) ? ("array is ='" + print()) : "") + '\t' +
+                "column_name='" + column_name +
+                ((array.size() > 0) ? ("array is ='" + print()) : "") +
                 '}';
     }
 

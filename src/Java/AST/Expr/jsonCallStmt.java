@@ -14,7 +14,7 @@ public class jsonCallStmt implements Expretion {
         }
 
         return "jsonCallStmt{" +
-                "array=" + s +
+                "" + s +
                 '}';
     }
 

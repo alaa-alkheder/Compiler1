@@ -23,13 +23,13 @@ public class TypeName extends Node {
     @Override
     public String toString() {
         return "TypeName{" +
-                "name='" + name + "\n'" +
-                ((anyName1 != null) ? ("anyName1='" + anyName1) : "") + "\t\t" +
-                ((Star1 != false) ? ("All coll='") : "") + '\t' +
-                ((numberDefine1 != null) ? ("numberDefine1='" + numberDefine1.toString()) : "") + '\n' +
-                ((anyName2 != null) ? ("anyName2='" + anyName2) : "") + "\t\t" +
-                ((Star2 != false) ? ("All coll") : "") + '\t' +
-                ((numberDefine2 != null) ? ("numberDefine2='" + numberDefine2.toString()) : "") + '\t' +
+                "name='" + name +
+                ((anyName1 != null) ? ("anyName1='" + anyName1) : "") +
+                ((Star1 != false) ? ("All coll='") : "") +
+                ((numberDefine1 != null) ? ("numberDefine1='" + numberDefine1.toString()) : "") +
+                ((anyName2 != null) ? ("anyName2='" + anyName2) : "") +
+                ((Star2 != false) ? ("All coll") : "") +
+                ((numberDefine2 != null) ? ("numberDefine2='" + numberDefine2.toString()) : "") +
                 '}';
     }
 

@@ -1,5 +1,6 @@
 package Java.AST.conditionStmt;
 
+import Java.AST.BodyStmt;
 import Java.AST.Expr.Expretion;
 import Java.AST.QueryStmt.Statement;
 
@@ -9,17 +10,17 @@ public class ifStmt extends Statement {
     boolean elseifBool;
     Expretion condition;
     ifStmt elseif;
-    ArrayList<Statement> body = new ArrayList<>();
+    BodyStmt bodys = new BodyStmt();
 
-    public void setBody(Statement body) {
-        this.body.add(body);
+    public void setBodys(BodyStmt bodys) {
+        this.bodys = bodys;
     }
 
-    public void setElseBody(Statement elseBody) {
-        this.elseBody.add(elseBody);
+    public void setElseBody(BodyStmt elseBody) {
+        this.elseBody = (elseBody);
     }
 
-    ArrayList<Statement> elseBody = new ArrayList<>();
+    BodyStmt elseBody = new BodyStmt();
 
     public void setElseifBool(boolean elseifBool) {
         this.elseifBool = elseifBool;
@@ -37,7 +38,9 @@ public class ifStmt extends Statement {
     @Override
     public String toString() {
         return "ifStmt{" +
-                ((condition != null) ? ("condition  ='" + condition.toString()) : "the condition is null") + '\t' +
+                ((condition != null) ? ("condition  ='" + condition.toString() + ", body=" + bodys.toString()) : "the condition is null") + '\t' +
+                ((elseif != null) ? ("Else if  ='" + elseif.toString()) : "") +
+                ((elseBody != null) ? ("Else Body  ='" + elseBody.toString()) : "") +
                 '}';
     }
 }

@@ -1,6 +1,1 @@
-f(){
-
-
-
-
-}
+select * from user

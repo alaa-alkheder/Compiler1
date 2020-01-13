@@ -3,12 +3,15 @@ package Java.AST.QueryStmt.SqlStmt.TableConstrent;
 import Java.AST.Expr.Expretion;
 import Java.AST.Node;
 
+//the class was bulded
 public class Table_constraint extends Node {
     private String name;
     private Table_constraint_primary_key table_constraint_primary_key;
     private Table_constraint_key table_constraint_key;
     private Table_constraint_unique table_constraint_unique;
     private Table_constraint_foreign_key table_constraint_foreign_key;
+    private Expretion checkExpr;
+
 
     @Override
     public String toString() {
@@ -44,8 +47,6 @@ public class Table_constraint extends Node {
     public void setCheckExpr(Expretion checkExpr) {
         this.checkExpr = checkExpr;
     }
-
-    private Expretion checkExpr;
     /* : ( K_CONSTRAINT  )?
    ( table_constraint_primary_key
    | t

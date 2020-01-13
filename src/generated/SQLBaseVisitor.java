@@ -45,91 +45,130 @@ public class SQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStat(SQLParser.StatContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitStat_forloop(SQLParser.Stat_forloopContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitC(SQLParser.CContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitJson_st(SQLParser.Json_stContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStat_with_return(SQLParser.Stat_with_returnContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitJson_atmt(SQLParser.Json_atmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStat_forloop(SQLParser.Stat_forloopContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitHiger_order_function_stmt_head(SQLParser.Higer_order_function_stmt_headContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitS(SQLParser.SContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitHiger_order_function_stmt(SQLParser.Higer_order_function_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStat_withblock_forloop(SQLParser.Stat_withblock_forloopContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitX(SQLParser.XContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJson_st(SQLParser.Json_stContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArr_stmt(SQLParser.Arr_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJson_atmt(SQLParser.Json_atmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitVar_stmt(SQLParser.Var_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHiger_order_function_stmt(SQLParser.Higer_order_function_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitVar_body(SQLParser.Var_bodyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArr_stmt(SQLParser.Arr_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitPrint_stmt(SQLParser.Print_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVar_stmt(SQLParser.Var_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCall_array(SQLParser.Call_arrayContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVar_stmt_withscol(SQLParser.Var_stmt_withscolContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCall_json(SQLParser.Call_jsonContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPrint_stmt(SQLParser.Print_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitPrint_body(SQLParser.Print_bodyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -171,161 +210,220 @@ public class SQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArguments_stmt(SQLParser.Arguments_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArguments_body_defult_paremeter(SQLParser.Arguments_body_defult_paremeterContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFor_stmt(SQLParser.For_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArguments_body(SQLParser.Arguments_bodyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDo_while_stmt(SQLParser.Do_while_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArguments_stmt(SQLParser.Arguments_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitWhile_stmt(SQLParser.While_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitLoop_Bady(SQLParser.Loop_BadyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondition_block(SQLParser.Condition_blockContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIncrement(SQLParser.IncrementContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondition_block_forloop(SQLParser.Condition_block_forloopContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitFor_stmt(SQLParser.For_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_stmt(SQLParser.If_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitDo_while_stmt(SQLParser.Do_while_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_stmt_forloop(SQLParser.If_stmt_forloopContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitWhile_stmt(SQLParser.While_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_stmt_short(SQLParser.If_stmt_shortContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCondition_block(SQLParser.Condition_blockContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_stmt_short_for_return(SQLParser.If_stmt_short_for_returnContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_body(SQLParser.If_bodyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_stmt_short_forloop(SQLParser.If_stmt_short_forloopContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_else_if(SQLParser.If_else_ifContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSwitch_stmt(SQLParser.Switch_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_else(SQLParser.If_elseContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBreak_stmt(SQLParser.Break_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_stmt(SQLParser.If_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturn_stmt(SQLParser.Return_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_stmt_short(SQLParser.If_stmt_shortContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOne_line_instruction(SQLParser.One_line_instructionContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_stmt_short_head(SQLParser.If_stmt_short_headContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_op0(SQLParser.Math_op0Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitIf_stmt_short_body(SQLParser.If_stmt_short_bodyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_op1(SQLParser.Math_op1Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitSwitch_stmt(SQLParser.Switch_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_op2(SQLParser.Math_op2Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCase_stmt(SQLParser.Case_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_op3(SQLParser.Math_op3Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitReturn_stmt(SQLParser.Return_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_operator1(SQLParser.Logic_operator1Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArray1(SQLParser.Array1Context ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_operator2(SQLParser.Logic_operator2Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitOne_line_instruction(SQLParser.One_line_instructionContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr0(SQLParser.Math_expr0Context ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitMath_expr_all(SQLParser.Math_expr_allContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_op0(SQLParser.Math_op0Context ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -339,287 +437,320 @@ public class SQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr_plus(SQLParser.Math_expr_plusContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr_Add_one(SQLParser.Math_expr_Add_oneContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr_plus_withoutbrackets(SQLParser.Math_expr_plus_withoutbracketsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr_Add_one_increment(SQLParser.Math_expr_Add_one_incrementContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr1(SQLParser.Math_expr1Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr_Add_one_dencrement(SQLParser.Math_expr_Add_one_dencrementContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr1_withbrackets(SQLParser.Math_expr1_withbracketsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitAlter_table_stmt(SQLParser.Alter_table_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr2(SQLParser.Math_expr2Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitAlter_table_add_constraint(SQLParser.Alter_table_add_constraintContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr2_withbrackets(SQLParser.Math_expr2_withbracketsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitAlter_table_add(SQLParser.Alter_table_addContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr3(SQLParser.Math_expr3Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCreate_table_stmt(SQLParser.Create_table_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr3_withbrackets(SQLParser.Math_expr3_withbracketsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitDelete_stmt(SQLParser.Delete_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMath_expr_without_digit(SQLParser.Math_expr_without_digitContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitDrop_table_stmt(SQLParser.Drop_table_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitResult_mathematic(SQLParser.Result_mathematicContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitFactored_select_stmt(SQLParser.Factored_select_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_expr1(SQLParser.Logic_expr1Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitInsert_stmt(SQLParser.Insert_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_expr1_withbracets(SQLParser.Logic_expr1_withbracetsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitSelect_stmt(SQLParser.Select_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_all(SQLParser.Logic_allContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitSelect_or_values(SQLParser.Select_or_valuesContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_expr2(SQLParser.Logic_expr2Context ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitCall_expr(SQLParser.Call_exprContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_expr2_withbrackets(SQLParser.Logic_expr2_withbracketsContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitUpdate_stmt(SQLParser.Update_stmtContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogic_resault(SQLParser.Logic_resaultContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_def(SQLParser.Column_defContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssingment_rule_without_bracket(SQLParser.Assingment_rule_without_bracketContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitType_name(SQLParser.Type_nameContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssingment_rule_with_bracket(SQLParser.Assingment_rule_with_bracketContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitType_name_value(SQLParser.Type_name_valueContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssingment_rule_with_scol(SQLParser.Assingment_rule_with_scolContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_constraint(SQLParser.Column_constraintContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssingment_rule_without_scol(SQLParser.Assingment_rule_without_scolContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_constraint_primary_key(SQLParser.Column_constraint_primary_keyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAlter_table_stmt(SQLParser.Alter_table_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_constraint_foreign_key(SQLParser.Column_constraint_foreign_keyContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAlter_table_add_constraint(SQLParser.Alter_table_add_constraintContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_constraint_not_null(SQLParser.Column_constraint_not_nullContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAlter_table_add(SQLParser.Alter_table_addContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_constraint_null(SQLParser.Column_constraint_nullContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCreate_table_stmt(SQLParser.Create_table_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_default(SQLParser.Column_defaultContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDelete_stmt(SQLParser.Delete_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitColumn_default_value(SQLParser.Column_default_valueContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDrop_table_stmt(SQLParser.Drop_table_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitArray_json(SQLParser.Array_jsonContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFactored_select_stmt(SQLParser.Factored_select_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitExpr_condition(SQLParser.Expr_conditionContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInsert_stmt(SQLParser.Insert_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr_EQ(SQLParser.Math_expr_EQContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSelect_stmt(SQLParser.Select_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr(SQLParser.Math_exprContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSelect_or_values(SQLParser.Select_or_valuesContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitMath_expr_logic(SQLParser.Math_expr_logicContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUpdate_stmt(SQLParser.Update_stmtContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitExpr(SQLParser.ExprContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitColumn_def(SQLParser.Column_defContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitType_name(SQLParser.Type_nameContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_constraint(SQLParser.Column_constraintContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_constraint_primary_key(SQLParser.Column_constraint_primary_keyContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_constraint_foreign_key(SQLParser.Column_constraint_foreign_keyContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_constraint_not_null(SQLParser.Column_constraint_not_nullContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_constraint_null(SQLParser.Column_constraint_nullContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_default(SQLParser.Column_defaultContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitColumn_default_value(SQLParser.Column_default_valueContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitExpr(SQLParser.ExprContext ctx) { return visitChildren(ctx); }
+    @Override
+    public T visitForeign_key_clause_value(SQLParser.Foreign_key_clause_valueContext ctx) {
+        return visitChildren(ctx);
+    }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -754,6 +885,28 @@ public class SQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SQ
 	 */
 	@Override public T visitSelect_core(SQLParser.Select_coreContext ctx) { return visitChildren(ctx); }
 	/**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation returns the result of calling
+     * {@link #visitChildren} on {@code ctx}.</p>
+     */
+    @Override
+    public T visitGroup_expr(SQLParser.Group_exprContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation returns the result of calling
+     * {@link #visitChildren} on {@code ctx}.</p>
+     */
+    @Override
+    public T visitValues_selectCore(SQLParser.Values_selectCoreContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    /**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
@@ -809,13 +962,6 @@ public class SQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SQ
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitKeyword(SQLParser.KeywordContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitUnknown(SQLParser.UnknownContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,5 +1,6 @@
 package Java.AST.FunctionStmt;
 
+import Java.AST.BodyStmt;
 import Java.AST.QueryStmt.Statement;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class FunctionDeclaration extends Statement {
 
     String FunctionName;
     List<Arrgmint> head=new ArrayList<>();
-    ArrayList<Statement> body =new ArrayList<>();
+    BodyStmt body = new BodyStmt();
 
     @Override
     public String toString() {
@@ -18,7 +19,7 @@ public class FunctionDeclaration extends Statement {
 
                 "\n FunctionName =   '" + FunctionName + '\'' +
                 "\tarrgmint=" + printArrgiment() +
-                 "\nbody=\n" + printBody() + '\'' +
+                " body=" + body.toString() +
                 "\n}end function name"+FunctionName;
     }
 
@@ -32,15 +33,6 @@ public class FunctionDeclaration extends Statement {
 
 }
 
-    private  String printBody(){
-
-        String x="";
-        for (int i = 0; i < body.size(); i++) {
-            x+="\n"+i+"-body name is :"+body.get(0).toString() ;
-        }
-        return  x;
-
-    }
 
     public List<Arrgmint> getHead() {
         return head;
@@ -62,16 +54,7 @@ public class FunctionDeclaration extends Statement {
         this.FunctionName = name;
     }
 
-    public ArrayList<Statement> getBody() {
-        return body;
-    }
-
-    public void setBody(ArrayList<Statement> body) {
+    public void setBody(BodyStmt body) {
         this.body = body;
     }
-
-    public void addBody(Statement body) {
-        this.body.add( body);
-    }
-
 }

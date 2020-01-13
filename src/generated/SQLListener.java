@@ -48,36 +48,6 @@ public interface SQLListener extends ParseTreeListener {
 	 */
 	void exitSql_stmt(SQLParser.Sql_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStat(SQLParser.StatContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStat(SQLParser.StatContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#c}.
-	 * @param ctx the parse tree
-	 */
-	void enterC(SQLParser.CContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#c}.
-	 * @param ctx the parse tree
-	 */
-	void exitC(SQLParser.CContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#stat_with_return}.
-	 * @param ctx the parse tree
-	 */
-	void enterStat_with_return(SQLParser.Stat_with_returnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#stat_with_return}.
-	 * @param ctx the parse tree
-	 */
-	void exitStat_with_return(SQLParser.Stat_with_returnContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SQLParser#stat_forloop}.
 	 * @param ctx the parse tree
 	 */
@@ -87,26 +57,6 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStat_forloop(SQLParser.Stat_forloopContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#s}.
-	 * @param ctx the parse tree
-	 */
-	void enterS(SQLParser.SContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#s}.
-	 * @param ctx the parse tree
-	 */
-	void exitS(SQLParser.SContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#stat_withblock_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void enterStat_withblock_forloop(SQLParser.Stat_withblock_forloopContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#stat_withblock_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void exitStat_withblock_forloop(SQLParser.Stat_withblock_forloopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#json_st}.
 	 * @param ctx the parse tree
@@ -128,6 +78,19 @@ public interface SQLListener extends ParseTreeListener {
 	 */
 	void exitJson_atmt(SQLParser.Json_atmtContext ctx);
 	/**
+     * Enter a parse tree produced by {@link SQLParser#higer_order_function_stmt_head}.
+     * @param ctx the parse tree
+     */
+    void enterHiger_order_function_stmt_head(SQLParser.Higer_order_function_stmt_headContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#higer_order_function_stmt_head}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitHiger_order_function_stmt_head(SQLParser.Higer_order_function_stmt_headContext ctx);
+
+    /**
 	 * Enter a parse tree produced by {@link SQLParser#higer_order_function_stmt}.
 	 * @param ctx the parse tree
 	 */
@@ -137,6 +100,20 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHiger_order_function_stmt(SQLParser.Higer_order_function_stmtContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#x}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterX(SQLParser.XContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#x}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitX(SQLParser.XContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#arr_stmt}.
 	 * @param ctx the parse tree
@@ -157,16 +134,18 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVar_stmt(SQLParser.Var_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#var_stmt_withscol}.
-	 * @param ctx the parse tree
-	 */
-	void enterVar_stmt_withscol(SQLParser.Var_stmt_withscolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#var_stmt_withscol}.
-	 * @param ctx the parse tree
-	 */
-	void exitVar_stmt_withscol(SQLParser.Var_stmt_withscolContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#var_body}.
+     * @param ctx the parse tree
+     */
+    void enterVar_body(SQLParser.Var_bodyContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#var_body}.
+     * @param ctx the parse tree
+     */
+    void exitVar_body(SQLParser.Var_bodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#print_stmt}.
 	 * @param ctx the parse tree
@@ -177,6 +156,48 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint_stmt(SQLParser.Print_stmtContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#call_array}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterCall_array(SQLParser.Call_arrayContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#call_array}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitCall_array(SQLParser.Call_arrayContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#call_json}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterCall_json(SQLParser.Call_jsonContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#call_json}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitCall_json(SQLParser.Call_jsonContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#print_body}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterPrint_body(SQLParser.Print_bodyContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#print_body}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitPrint_body(SQLParser.Print_bodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#function_head}.
 	 * @param ctx the parse tree
@@ -223,20 +244,75 @@ public interface SQLListener extends ParseTreeListener {
 	 */
 	void enterParams_stmt(SQLParser.Params_stmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#params_stmt}.
+     * Exit a parse tree produced by {@link SQLParser#params_stmt}.
+     * @param ctx the parse tree
+     */
+    void exitParams_stmt(SQLParser.Params_stmtContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#arguments_body_defult_paremeter}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterArguments_body_defult_paremeter(SQLParser.Arguments_body_defult_paremeterContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#arguments_body_defult_paremeter}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitArguments_body_defult_paremeter(SQLParser.Arguments_body_defult_paremeterContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#arguments_body}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterArguments_body(SQLParser.Arguments_bodyContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#arguments_body}.
 	 * @param ctx the parse tree
 	 */
-	void exitParams_stmt(SQLParser.Params_stmtContext ctx);
+	void exitArguments_body(SQLParser.Arguments_bodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#arguments_stmt}.
 	 * @param ctx the parse tree
 	 */
 	void enterArguments_stmt(SQLParser.Arguments_stmtContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#arguments_stmt}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitArguments_stmt(SQLParser.Arguments_stmtContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#loop_Bady}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterLoop_Bady(SQLParser.Loop_BadyContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#loop_Bady}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitLoop_Bady(SQLParser.Loop_BadyContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#increment}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterIncrement(SQLParser.IncrementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#arguments_stmt}.
+	 * Exit a parse tree produced by {@link SQLParser#increment}.
 	 * @param ctx the parse tree
 	 */
-	void exitArguments_stmt(SQLParser.Arguments_stmtContext ctx);
+	void exitIncrement(SQLParser.IncrementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#for_stmt}.
 	 * @param ctx the parse tree
@@ -270,23 +346,53 @@ public interface SQLListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#condition_block}.
 	 * @param ctx the parse tree
+     */
+    void enterCondition_block(SQLParser.Condition_blockContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#condition_block}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitCondition_block(SQLParser.Condition_blockContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#if_body}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterIf_body(SQLParser.If_bodyContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#if_body}.
+     * @param ctx the parse tree
 	 */
-	void enterCondition_block(SQLParser.Condition_blockContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#condition_block}.
+	void exitIf_body(SQLParser.If_bodyContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#if_else_if}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterIf_else_if(SQLParser.If_else_ifContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#if_else_if}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitIf_else_if(SQLParser.If_else_ifContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#if_else}.
 	 * @param ctx the parse tree
 	 */
-	void exitCondition_block(SQLParser.Condition_blockContext ctx);
+	void enterIf_else(SQLParser.If_elseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#condition_block_forloop}.
+	 * Exit a parse tree produced by {@link SQLParser#if_else}.
 	 * @param ctx the parse tree
 	 */
-	void enterCondition_block_forloop(SQLParser.Condition_block_forloopContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#condition_block_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void exitCondition_block_forloop(SQLParser.Condition_block_forloopContext ctx);
+	void exitIf_else(SQLParser.If_elseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#if_stmt}.
 	 * @param ctx the parse tree
@@ -298,75 +404,81 @@ public interface SQLListener extends ParseTreeListener {
 	 */
 	void exitIf_stmt(SQLParser.If_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#if_stmt_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void enterIf_stmt_forloop(SQLParser.If_stmt_forloopContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#if_stmt_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void exitIf_stmt_forloop(SQLParser.If_stmt_forloopContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SQLParser#if_stmt_short}.
-	 * @param ctx the parse tree
+     * @param ctx the parse tree
 	 */
 	void enterIf_stmt_short(SQLParser.If_stmt_shortContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#if_stmt_short}.
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#if_stmt_short}.
+     * @param ctx the parse tree
+     */
+    void exitIf_stmt_short(SQLParser.If_stmt_shortContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#if_stmt_short_head}.
+     * @param ctx the parse tree
+     */
+    void enterIf_stmt_short_head(SQLParser.If_stmt_short_headContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#if_stmt_short_head}.
+     * @param ctx the parse tree
+     */
+    void exitIf_stmt_short_head(SQLParser.If_stmt_short_headContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#if_stmt_short_body}.
 	 * @param ctx the parse tree
 	 */
-	void exitIf_stmt_short(SQLParser.If_stmt_shortContext ctx);
+	void enterIf_stmt_short_body(SQLParser.If_stmt_short_bodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#if_stmt_short_for_return}.
+	 * Exit a parse tree produced by {@link SQLParser#if_stmt_short_body}.
 	 * @param ctx the parse tree
 	 */
-	void enterIf_stmt_short_for_return(SQLParser.If_stmt_short_for_returnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#if_stmt_short_for_return}.
-	 * @param ctx the parse tree
-	 */
-	void exitIf_stmt_short_for_return(SQLParser.If_stmt_short_for_returnContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#if_stmt_short_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void enterIf_stmt_short_forloop(SQLParser.If_stmt_short_forloopContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#if_stmt_short_forloop}.
-	 * @param ctx the parse tree
-	 */
-	void exitIf_stmt_short_forloop(SQLParser.If_stmt_short_forloopContext ctx);
+	void exitIf_stmt_short_body(SQLParser.If_stmt_short_bodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#switch_stmt}.
-	 * @param ctx the parse tree
+     * @param ctx the parse tree
 	 */
 	void enterSwitch_stmt(SQLParser.Switch_stmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#switch_stmt}.
+     * Exit a parse tree produced by {@link SQLParser#switch_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitSwitch_stmt(SQLParser.Switch_stmtContext ctx);
+    void exitSwitch_stmt(SQLParser.Switch_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#break_stmt}.
+	 * Enter a parse tree produced by {@link SQLParser#case_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterBreak_stmt(SQLParser.Break_stmtContext ctx);
+	void enterCase_stmt(SQLParser.Case_stmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#break_stmt}.
+	 * Exit a parse tree produced by {@link SQLParser#case_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitBreak_stmt(SQLParser.Break_stmtContext ctx);
+	void exitCase_stmt(SQLParser.Case_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#return_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterReturn_stmt(SQLParser.Return_stmtContext ctx);
+     * Enter a parse tree produced by {@link SQLParser#return_stmt}.
+     * @param ctx the parse tree
+     */
+    void enterReturn_stmt(SQLParser.Return_stmtContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#return_stmt}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitReturn_stmt(SQLParser.Return_stmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#return_stmt}.
+	 * Enter a parse tree produced by {@link SQLParser#array1}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn_stmt(SQLParser.Return_stmtContext ctx);
+	void enterArray1(SQLParser.Array1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link SQLParser#array1}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray1(SQLParser.Array1Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#one_line_instruction}.
 	 * @param ctx the parse tree
@@ -387,286 +499,53 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMath_op0(SQLParser.Math_op0Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_op1}.
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#identifier}.
 	 * @param ctx the parse tree
-	 */
-	void enterMath_op1(SQLParser.Math_op1Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_op1}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_op1(SQLParser.Math_op1Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_op2}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_op2(SQLParser.Math_op2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_op2}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_op2(SQLParser.Math_op2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_op3}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_op3(SQLParser.Math_op3Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_op3}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_op3(SQLParser.Math_op3Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_operator1}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_operator1(SQLParser.Logic_operator1Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_operator1}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_operator1(SQLParser.Logic_operator1Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_operator2}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_operator2(SQLParser.Logic_operator2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_operator2}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_operator2(SQLParser.Logic_operator2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr0}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr0(SQLParser.Math_expr0Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr0}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr0(SQLParser.Math_expr0Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr_all}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr_all(SQLParser.Math_expr_allContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr_all}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr_all(SQLParser.Math_expr_allContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#identifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdentifier(SQLParser.IdentifierContext ctx);
-	/**
+     */
+    void enterIdentifier(SQLParser.IdentifierContext ctx);
+
+    /**
 	 * Exit a parse tree produced by {@link SQLParser#identifier}.
-	 * @param ctx the parse tree
+     * @param ctx the parse tree
 	 */
 	void exitIdentifier(SQLParser.IdentifierContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#math_expr_Add_one}.
+     * @param ctx the parse tree
+     */
+    void enterMath_expr_Add_one(SQLParser.Math_expr_Add_oneContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#math_expr_Add_one}.
+     * @param ctx the parse tree
+     */
+    void exitMath_expr_Add_one(SQLParser.Math_expr_Add_oneContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#math_expr_Add_one_increment}.
+	 * @param ctx the parse tree
+     */
+    void enterMath_expr_Add_one_increment(SQLParser.Math_expr_Add_one_incrementContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#math_expr_Add_one_increment}.
+     * @param ctx the parse tree
+     */
+    void exitMath_expr_Add_one_increment(SQLParser.Math_expr_Add_one_incrementContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#math_expr_Add_one_dencrement}.
+     * @param ctx the parse tree
+	 */
+	void enterMath_expr_Add_one_dencrement(SQLParser.Math_expr_Add_one_dencrementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr_plus}.
+	 * Exit a parse tree produced by {@link SQLParser#math_expr_Add_one_dencrement}.
 	 * @param ctx the parse tree
 	 */
-	void enterMath_expr_plus(SQLParser.Math_expr_plusContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr_plus}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr_plus(SQLParser.Math_expr_plusContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr_plus_withoutbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr_plus_withoutbrackets(SQLParser.Math_expr_plus_withoutbracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr_plus_withoutbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr_plus_withoutbrackets(SQLParser.Math_expr_plus_withoutbracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr1}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr1(SQLParser.Math_expr1Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr1}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr1(SQLParser.Math_expr1Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr1_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr1_withbrackets(SQLParser.Math_expr1_withbracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr1_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr1_withbrackets(SQLParser.Math_expr1_withbracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr2}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr2(SQLParser.Math_expr2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr2}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr2(SQLParser.Math_expr2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr2_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr2_withbrackets(SQLParser.Math_expr2_withbracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr2_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr2_withbrackets(SQLParser.Math_expr2_withbracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr3}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr3(SQLParser.Math_expr3Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr3}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr3(SQLParser.Math_expr3Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr3_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr3_withbrackets(SQLParser.Math_expr3_withbracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr3_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr3_withbrackets(SQLParser.Math_expr3_withbracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#math_expr_without_digit}.
-	 * @param ctx the parse tree
-	 */
-	void enterMath_expr_without_digit(SQLParser.Math_expr_without_digitContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#math_expr_without_digit}.
-	 * @param ctx the parse tree
-	 */
-	void exitMath_expr_without_digit(SQLParser.Math_expr_without_digitContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#result_mathematic}.
-	 * @param ctx the parse tree
-	 */
-	void enterResult_mathematic(SQLParser.Result_mathematicContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#result_mathematic}.
-	 * @param ctx the parse tree
-	 */
-	void exitResult_mathematic(SQLParser.Result_mathematicContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_expr1}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_expr1(SQLParser.Logic_expr1Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_expr1}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_expr1(SQLParser.Logic_expr1Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_expr1_withbracets}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_expr1_withbracets(SQLParser.Logic_expr1_withbracetsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_expr1_withbracets}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_expr1_withbracets(SQLParser.Logic_expr1_withbracetsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_all}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_all(SQLParser.Logic_allContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_all}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_all(SQLParser.Logic_allContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_expr2}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_expr2(SQLParser.Logic_expr2Context ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_expr2}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_expr2(SQLParser.Logic_expr2Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_expr2_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_expr2_withbrackets(SQLParser.Logic_expr2_withbracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_expr2_withbrackets}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_expr2_withbrackets(SQLParser.Logic_expr2_withbracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#logic_resault}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogic_resault(SQLParser.Logic_resaultContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#logic_resault}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogic_resault(SQLParser.Logic_resaultContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#assingment_rule_without_bracket}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssingment_rule_without_bracket(SQLParser.Assingment_rule_without_bracketContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#assingment_rule_without_bracket}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssingment_rule_without_bracket(SQLParser.Assingment_rule_without_bracketContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#assingment_rule_with_bracket}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssingment_rule_with_bracket(SQLParser.Assingment_rule_with_bracketContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#assingment_rule_with_bracket}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssingment_rule_with_bracket(SQLParser.Assingment_rule_with_bracketContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#assingment_rule_with_scol}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssingment_rule_with_scol(SQLParser.Assingment_rule_with_scolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#assingment_rule_with_scol}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssingment_rule_with_scol(SQLParser.Assingment_rule_with_scolContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#assingment_rule_without_scol}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssingment_rule_without_scol(SQLParser.Assingment_rule_without_scolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#assingment_rule_without_scol}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssingment_rule_without_scol(SQLParser.Assingment_rule_without_scolContext ctx);
+	void exitMath_expr_Add_one_dencrement(SQLParser.Math_expr_Add_one_dencrementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#alter_table_stmt}.
 	 * @param ctx the parse tree
@@ -758,15 +637,27 @@ public interface SQLListener extends ParseTreeListener {
 	 */
 	void exitSelect_stmt(SQLParser.Select_stmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#select_or_values}.
-	 * @param ctx the parse tree
-	 */
-	void enterSelect_or_values(SQLParser.Select_or_valuesContext ctx);
+     * Enter a parse tree produced by {@link SQLParser#select_or_values}.
+     * @param ctx the parse tree
+     */
+    void enterSelect_or_values(SQLParser.Select_or_valuesContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#select_or_values}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitSelect_or_values(SQLParser.Select_or_valuesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#select_or_values}.
+	 * Enter a parse tree produced by {@link SQLParser#call_expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelect_or_values(SQLParser.Select_or_valuesContext ctx);
+	void enterCall_expr(SQLParser.Call_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SQLParser#call_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCall_expr(SQLParser.Call_exprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#update_stmt}.
 	 * @param ctx the parse tree
@@ -787,16 +678,31 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumn_def(SQLParser.Column_defContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#type_name}.
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#type_name}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterType_name(SQLParser.Type_nameContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#type_name}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitType_name(SQLParser.Type_nameContext ctx);
+
+    /**
+	 * Enter a parse tree produced by {@link SQLParser#type_name_value}.
 	 * @param ctx the parse tree
 	 */
-	void enterType_name(SQLParser.Type_nameContext ctx);
+	void enterType_name_value(SQLParser.Type_name_valueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#type_name}.
+	 * Exit a parse tree produced by {@link SQLParser#type_name_value}.
 	 * @param ctx the parse tree
 	 */
-	void exitType_name(SQLParser.Type_nameContext ctx);
+	void exitType_name_value(SQLParser.Type_name_valueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#column_constraint}.
 	 * @param ctx the parse tree
@@ -857,26 +763,111 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumn_default(SQLParser.Column_defaultContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#column_default_value}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterColumn_default_value(SQLParser.Column_default_valueContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#column_default_value}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitColumn_default_value(SQLParser.Column_default_valueContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#array_json}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterArray_json(SQLParser.Array_jsonContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#array_json}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitArray_json(SQLParser.Array_jsonContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#expr_condition}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterExpr_condition(SQLParser.Expr_conditionContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#expr_condition}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitExpr_condition(SQLParser.Expr_conditionContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#math_expr_EQ}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterMath_expr_EQ(SQLParser.Math_expr_EQContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#math_expr_EQ}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMath_expr_EQ(SQLParser.Math_expr_EQContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#math_expr}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterMath_expr(SQLParser.Math_exprContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#math_expr}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMath_expr(SQLParser.Math_exprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#column_default_value}.
+	 * Enter a parse tree produced by {@link SQLParser#math_expr_logic}.
 	 * @param ctx the parse tree
-	 */
-	void enterColumn_default_value(SQLParser.Column_default_valueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#column_default_value}.
-	 * @param ctx the parse tree
-	 */
-	void exitColumn_default_value(SQLParser.Column_default_valueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpr(SQLParser.ExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#expr}.
+     */
+    void enterMath_expr_logic(SQLParser.Math_expr_logicContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#math_expr_logic}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMath_expr_logic(SQLParser.Math_expr_logicContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#expr}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterExpr(SQLParser.ExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#expr}.
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(SQLParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SQLParser#foreign_key_clause_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterForeign_key_clause_value(SQLParser.Foreign_key_clause_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SQLParser#foreign_key_clause_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitForeign_key_clause_value(SQLParser.Foreign_key_clause_valueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#foreign_key_clause}.
 	 * @param ctx the parse tree
@@ -1050,23 +1041,51 @@ public interface SQLListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#join_constraint}.
 	 * @param ctx the parse tree
-	 */
-	void enterJoin_constraint(SQLParser.Join_constraintContext ctx);
+     */
+    void enterJoin_constraint(SQLParser.Join_constraintContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#join_constraint}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitJoin_constraint(SQLParser.Join_constraintContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#select_core}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterSelect_core(SQLParser.Select_coreContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SQLParser#select_core}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitSelect_core(SQLParser.Select_coreContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link SQLParser#group_expr}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterGroup_expr(SQLParser.Group_exprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#join_constraint}.
+	 * Exit a parse tree produced by {@link SQLParser#group_expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitJoin_constraint(SQLParser.Join_constraintContext ctx);
+	void exitGroup_expr(SQLParser.Group_exprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLParser#select_core}.
+	 * Enter a parse tree produced by {@link SQLParser#values_selectCore}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelect_core(SQLParser.Select_coreContext ctx);
+	void enterValues_selectCore(SQLParser.Values_selectCoreContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SQLParser#select_core}.
+	 * Exit a parse tree produced by {@link SQLParser#values_selectCore}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelect_core(SQLParser.Select_coreContext ctx);
+	void exitValues_selectCore(SQLParser.Values_selectCoreContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#cte_table_name}.
 	 * @param ctx the parse tree
@@ -1147,16 +1166,6 @@ public interface SQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitKeyword(SQLParser.KeywordContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLParser#unknown}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnknown(SQLParser.UnknownContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLParser#unknown}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnknown(SQLParser.UnknownContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLParser#name}.
 	 * @param ctx the parse tree

@@ -15,8 +15,8 @@ public class varVariable  extends Var_stmt{
     @Override
     public String toString() {
         return
-//                "varVariable{" +
-//                "string='" + string + '\'' +
+                "varVariable{" +
+                        "string='" + string + '\'' +
                 " Expretion=" + Expretion.toString() ;
 //                '}';
     }

@@ -11,7 +11,7 @@ public class LimitStmt extends Statement {
     @Override
     public String toString() {
         return "LimitStmt{" +
-                ", expretion1=" + expretion1 +
+                ", expretion1=" + expretion1.toString() +
                 (K_OFFSET == true ? "K_OFFSET=" : ',') +
                 ", expretion2=" + expretion2 +
                 '}';
