@@ -1,29 +1,35 @@
-package Java.AST.QueryStmt.loopStmt;
+package Java.AST.loopStmt;
 
-import Java.AST.QueryStmt.Expr.Expretion;
-import Java.AST.QueryStmt.Var_define.varVariable;
+import Java.AST.BodyStmt;
+import Java.AST.Expr.Expretion;
 
 public class ForStmt extends LoopStmt {
-boolean newVar;
+    boolean newVar;
 
     public void setNewVar(boolean newVar) {
         this.newVar = newVar;
     }
 
-    Java.AST.QueryStmt.Var_define.varVariable varVariable;
+    Java.AST.Var_define.varVariable varVariable;
     Expretion increment;
+    BodyStmt body = new BodyStmt();
+
+    public void setBody(BodyStmt body) {
+        this.body = body;
+    }
 
     @Override
     public String toString() {
-        String d= "For Stmt{" +
-                ((varVariable!=null) ? ("Var define ='" + varVariable.toString() ): "Var define is null")+ '\t' +
-                ((Condition!=null) ? ("Condition='" + Condition.toString() ): "the loop is infinty")+ '\t' +
-        ((increment!=null) ? ("increment='" + increment.toString()): "increment is null")+ '\t' ;
+        String d = "For Stmt{" +
+                ((varVariable != null) ? ("Var define ='" + varVariable.toString()) : "Var define is null") + '\t' +
+                ((Condition != null) ? ("Condition='" + Condition.toString()) : "the loop is infinty") + '\t' +
+                ((increment != null) ? ("increment='" + increment.toString()) : "increment is null") + '\t'
+                + ", body=" + body.toString();
 
-        return d+'}'+"\n";
+        return d + '}' + "\n";
     }
 
-    public void setVarVariable(Java.AST.QueryStmt.Var_define.varVariable varVariable) {
+    public void setVarVariable(Java.AST.Var_define.varVariable varVariable) {
         this.varVariable = varVariable;
     }
 

@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Var_define;
+package Java.AST.Var_define;
 
 import java.util.HashMap;
 import java.util.Map;

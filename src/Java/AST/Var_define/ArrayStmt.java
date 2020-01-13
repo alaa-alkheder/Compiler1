@@ -1,8 +1,5 @@
-package Java.AST.QueryStmt.Var_define;
+package Java.AST.Var_define;
 
-import Java.AST.QueryStmt.Statement;
-
-import javax.json.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 

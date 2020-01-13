@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Expr;
+package Java.AST.Expr;
 
 public enum math_op {;
 

@@ -14,10 +14,10 @@ public class Statement extends Node {
     }
     public String getFromItem() {
         return null;
-    };
+    }
 
 
-@Override
+    @Override
 public String toString() {
         return "";
         }

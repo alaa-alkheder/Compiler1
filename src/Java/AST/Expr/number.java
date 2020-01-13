@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Expr;
+package Java.AST.Expr;
 
 public enum number {;
     private static final String num0 = "0";

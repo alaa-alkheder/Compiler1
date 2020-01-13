@@ -1,4 +1,4 @@
-package Java.AST.QueryStmt.Expr;
+package Java.AST.Expr;
 
 public enum logic_op {;
     private static final String GT = ">";
@@ -15,6 +15,11 @@ public enum logic_op {;
     private static final String AMP = "&";
     private static final String K_and = "and";
     private static final String K_or = "or";
+    private static final String assgin = "=";
+
+    public static String getAssgin() {
+        return assgin;
+    }
 
     public static String getGT() {
         return GT;

@@ -1,6 +1,1 @@
-soso(var c){
-var x={
-    id1:"55",
-i:99
-    };
- }
+select * from user

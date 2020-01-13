@@ -1,78 +1,114 @@
-package Java.AST.QueryStmt;
+package Java.AST.QueryStmt.SqlStmt;
 
+import Java.AST.Expr.Expretion;
+import Java.AST.QueryStmt.SqlStmt.TableConstrent.LimitStmt;
+import Java.AST.QueryStmt.SqlStmt.TableConstrent.ordering;
+import Java.AST.QueryStmt.SqlStmt.tableOrSubquery.ValuesSelectCoreStmt;
+import Java.AST.QueryStmt.SqlStmt.tableOrSubquery.join_clause;
+import Java.AST.QueryStmt.SqlStmt.tableOrSubquery.result_column;
+import Java.AST.QueryStmt.SqlStmt.tableOrSubquery.table_or_subquery;
+import Java.AST.QueryStmt.Statement;
 import generated.SQLParser;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.beans.Expression;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectStmt extends Statement {
-
+    private boolean K_DISTINCT;
+    private boolean K_ALL;
+    List<Java.AST.QueryStmt.SqlStmt.tableOrSubquery.result_column> result_columnList = new ArrayList<>();
+    List<table_or_subquery> FromTable = new ArrayList<>();
+    join_clause join_clause;
+    public Expretion where = null;
+    private GroupByElement groupBy;
+    private Expretion having;
+    List<ValuesSelectCoreStmt> valuesSelectCoreStmts = new ArrayList<>();
 
     @Override
     public String toString() {
         return "SelectStmt{" +
-                "result_column=" + result_column.get(0).getText() +
-                ", fromItem='" + fromItem + '\'' +
-//                ", where=" + where.toString() +
-                ", orderByElements=" +printorderByElements()+
+                ((K_DISTINCT != false) ? ("K_DISTINCT='") : "") +
+                ((K_ALL != false) ? ("K_ALL='") : "") +
+                ((result_columnList.size() > 0) ? ("result_columnList='" + ptint_result_columnList()) : "") +
+                ((FromTable.size() > 0) ? ("\nFromTable='" + ptint_FromTable()) : "") +
+                ((join_clause != null) ? ("join_clause='" + join_clause.toString()) : "") +
+                ((where != null) ? ("\nwhere='" + where.toString()) : "") +
+                ((groupBy != null) ? ("groupBy='" + groupBy.toString()) : "") +
+                ((having != null) ? ("having='" + having.toString()) : "") +
+                ((valuesSelectCoreStmts.size() > 0) ? ("valuesSelectCoreStmts='" + ptint_valuesSelectCoreStmts()) : "") +
                 '}';
     }
 
-    //    private Distinct distinct;
-//    private List<SelectItem> selectItems;
-    List<SQLParser.Result_columnContext> result_column;
-
-    private String printorderByElements(){
-        String temp="";
-        for (int i = 0; i <  orderByElements.size(); i++) {
-            temp+=i+" order is "+ orderByElements.get(i).getText()+" , ";
+    private String ptint_result_columnList() {
+        String s = "\n";
+        for (int i = 0; i < result_columnList.size(); i++) {
+            s += (i + 1 + result_columnList.get(i).toString());
         }
-        return temp;
-    }
-    public List<SQLParser.Result_columnContext> getResult_column() {
-        return result_column;
-    }
 
-    public void setResult_column(List<SQLParser.Result_columnContext> result_column) {
-        this.result_column = result_column;
+
+        return s;
     }
 
-    //    private List<Table> intoTables;
-         private String fromItem;
-    //    private List<Join> joins;
-    public SQLParser.ExprContext where=null;
-
-    //    private GroupByElement groupBy;
-    List<SQLParser.Ordering_termContext> orderByElements;//    private List<OrderByElement> orderByElements;
-
-//    private Expression having;
-//    private Limit limit;
-//    private Offset offset;
+    private String ptint_valuesSelectCoreStmts() {
+        String s = "\n";
+        for (int i = 0; i < valuesSelectCoreStmts.size(); i++) {
+            s += (valuesSelectCoreStmts.get(i).toString());
+        }
 
 
-
-
-    public String getWhere() {
-        return ""+ where.getText();
+        return s;
     }
 
 
-    public List<SQLParser.Ordering_termContext> getOrderByElements() {
-        return orderByElements;
+    private String ptint_FromTable() {
+        String s = "\n";
+        for (int i = 0; i < FromTable.size(); i++) {
+            s += (FromTable.get(i).toString());
+        }
+
+
+        return s;
     }
 
-    public void setOrderByElements(List<SQLParser.Ordering_termContext> orderByElements) {
 
-        this.orderByElements = orderByElements;
+    public void setK_DISTINCT(boolean k_DISTINCT) {
+        K_DISTINCT = k_DISTINCT;
     }
 
-    public void setFromItem(String fromItem) {
-        this.fromItem = fromItem;
-
+    public void setK_ALL(boolean k_ALL) {
+        K_ALL = k_ALL;
     }
 
-    public String getFromItem() {
-        return fromItem;
+    public void AddResult_columnList(result_column result_columnList) {
+        this.result_columnList.add(result_columnList);
     }
+
+    public void AddFromTable(table_or_subquery fromTable) {
+        FromTable.add(fromTable);
+    }
+
+    public void setJoin_clause(Java.AST.QueryStmt.SqlStmt.tableOrSubquery.join_clause join_clause) {
+        this.join_clause = join_clause;
+    }
+
+    public void setWhere(Expretion where) {
+        this.where = where;
+    }
+
+    public void setGroupBy(GroupByElement groupBy) {
+        this.groupBy = groupBy;
+    }
+
+    public void setHaving(Expretion having) {
+        this.having = having;
+    }
+
+
+    public void AddValuesSelectCoreStmts(ValuesSelectCoreStmt valuesSelectCoreStmts) {
+        this.valuesSelectCoreStmts.add(valuesSelectCoreStmts);
+    }
+
+
 }

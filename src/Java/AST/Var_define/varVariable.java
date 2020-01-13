@@ -1,6 +1,6 @@
-package Java.AST.QueryStmt.Var_define;
+package Java.AST.Var_define;
 
-import Java.AST.QueryStmt.Expr.Expretion;
+import Java.AST.Expr.Expretion;
 
 import java.util.ArrayList;
 
@@ -15,8 +15,8 @@ public class varVariable  extends Var_stmt{
     @Override
     public String toString() {
         return
-//                "varVariable{" +
-//                "string='" + string + '\'' +
+                "varVariable{" +
+                        "string='" + string + '\'' +
                 " Expretion=" + Expretion.toString() ;
 //                '}';
     }
@@ -25,15 +25,15 @@ public class varVariable  extends Var_stmt{
         this.aFloat = aFloat;
     }
 
-    public Java.AST.QueryStmt.Expr.Expretion getExpretion() {
+    public Java.AST.Expr.Expretion getExpretion() {
         return Expretion;
     }
 
-    public void setExpretion(Java.AST.QueryStmt.Expr.Expretion expretion) {
+    public void setExpretion(Java.AST.Expr.Expretion expretion) {
         Expretion = expretion;
     }
 
-    Java.AST.QueryStmt.Var_define.varType varType;
+    Java.AST.Var_define.varType varType;
 
     public String getString() {
         return string;
@@ -73,7 +73,7 @@ public class varVariable  extends Var_stmt{
         this.arrayList = arrayList;
     }
 
-    public Java.AST.QueryStmt.Var_define.varType getVarType() {
+    public Java.AST.Var_define.varType getVarType() {
         return varType;
     }
 
@@ -83,7 +83,7 @@ public class varVariable  extends Var_stmt{
 
         if (temp[0]=='"'){
             setString(s);
-             setType(Java.AST.QueryStmt.Var_define.varType.String.toString());
+            setType(Java.AST.Var_define.varType.String.toString());
              return;
         }else {
             for (int i = 0; i < 10; i++) {
@@ -91,18 +91,18 @@ public class varVariable  extends Var_stmt{
 //               System.out.println("`````"+x+"=="+i);
                 if ((char)i==x){
                      setaFloat(Float.valueOf(s)) ;
-                      setType(Java.AST.QueryStmt.Var_define.varType.numiric.toString());
+                    setType(Java.AST.Var_define.varType.numiric.toString());
                       return;
                 }
             }
 
         }
      setObject(s);
-        setType(Java.AST.QueryStmt.Var_define.varType.object.toString());
+        setType(Java.AST.Var_define.varType.object.toString());
 
     }
 
-    public void setVarType(Java.AST.QueryStmt.Var_define.varType varType) {
+    public void setVarType(Java.AST.Var_define.varType varType) {
         this.varType = varType;
     }
 }

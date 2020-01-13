@@ -1,6 +1,6 @@
-package Java.AST.QueryStmt.FunctionStmt;
+package Java.AST.FunctionStmt;
 
-import Java.AST.QueryStmt.Expr.Expretion;
+import Java.AST.Expr.Expretion;
 
 public class Arrgmint {
     public String getName() {
