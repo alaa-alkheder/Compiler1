@@ -14,10 +14,10 @@
         <entry key="CodeAssistance.QuickPopups" value="NOT_PASSED" />
         <entry key="Collapse" value="NOT_PASSED" />
         <entry key="Comment Line" value="NOT_PASSED" />
-        <entry key="Completion with Tab" value="NOT_PASSED" />
+        <entry key="Completion with Tab" value="PASSED" />
         <entry key="Declaration and usages" value="NOT_PASSED" />
         <entry key="Duplicate" value="NOT_PASSED" />
-        <entry key="EditorBasics.DeleteLine" value="NOT_PASSED" />
+        <entry key="EditorBasics.DeleteLine" value="PASSED" />
         <entry key="EditorBasics.Selection" value="NOT_PASSED" />
         <entry key="Extract Method" value="NOT_PASSED" />
         <entry key="Extract Variable" value="NOT_PASSED" />
@@ -39,7 +39,7 @@
         <entry key="Navigation.FileStructure" value="NOT_PASSED" />
         <entry key="Navigation.JumptoSource" value="NOT_PASSED" />
         <entry key="Navigation.Next/PreviousOccurrences" value="NOT_PASSED" />
-        <entry key="Postfix Completion" value="NOT_PASSED" />
+        <entry key="Postfix Completion" value="PASSED" />
         <entry key="Refactoring Menu" value="NOT_PASSED" />
         <entry key="Refactorings.ExtractMethod" value="NOT_PASSED" />
         <entry key="Refactorings.ExtractVariable/Field" value="NOT_PASSED" />
@@ -47,7 +47,7 @@
         <entry key="Refactorings.Rename" value="NOT_PASSED" />
         <entry key="Rename" value="NOT_PASSED" />
         <entry key="Select" value="NOT_PASSED" />
-        <entry key="Smart Type Completion" value="NOT_PASSED" />
+        <entry key="Smart Type Completion" value="PASSED" />
         <entry key="Statement Completion" value="NOT_PASSED" />
         <entry key="swift.codeassistance.codeformatting" value="NOT_PASSED" />
         <entry key="swift.codeassistance.quickpopups" value="NOT_PASSED" />
@@ -87,6 +87,14 @@
             </StatisticData>
           </value>
         </entry>
+        <entry key="Basic Completion">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514378700" />
+            </StatisticData>
+          </value>
+        </entry>
         <entry key="Collapse">
           <value>
             <StatisticData>
@@ -103,6 +111,14 @@
             </StatisticData>
           </value>
         </entry>
+        <entry key="Completion with Tab">
+          <value>
+            <StatisticData>
+              <option name="state" value="PASSED" />
+              <option name="timestamp" value="7296" />
+            </StatisticData>
+          </value>
+        </entry>
         <entry key="Duplicate">
           <value>
             <StatisticData>
@@ -114,8 +130,8 @@
         <entry key="EditorBasics.DeleteLine">
           <value>
             <StatisticData>
-              <option name="state" value="STARTED" />
-              <option name="timestamp" value="1591514174547" />
+              <option name="state" value="PASSED" />
+              <option name="timestamp" value="118588" />
             </StatisticData>
           </value>
         </entry>
@@ -135,11 +151,35 @@
             </StatisticData>
           </value>
         </entry>
+        <entry key="Postfix Completion">
+          <value>
+            <StatisticData>
+              <option name="state" value="PASSED" />
+              <option name="timestamp" value="15258" />
+            </StatisticData>
+          </value>
+        </entry>
         <entry key="Select">
           <value>
             <StatisticData>
               <option name="state" value="STARTED" />
               <option name="timestamp" value="1591514172430" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Smart Type Completion">
+          <value>
+            <StatisticData>
+              <option name="state" value="PASSED" />
+              <option name="timestamp" value="26201" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Statement Completion">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514508499" />
             </StatisticData>
           </value>
         </entry>
