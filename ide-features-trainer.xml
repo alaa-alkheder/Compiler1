@@ -76,4 +76,74 @@
       </map>
     </option>
   </component>
+  <component name="StatisticBase">
+    <option name="persistedLessonId2State">
+      <map>
+        <entry key="Actions">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514169018" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Collapse">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514178476" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Comment Line">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514238257" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Duplicate">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514180426" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="EditorBasics.DeleteLine">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514174547" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Move">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514180041" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Multiple Selections">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514179078" />
+            </StatisticData>
+          </value>
+        </entry>
+        <entry key="Select">
+          <value>
+            <StatisticData>
+              <option name="state" value="STARTED" />
+              <option name="timestamp" value="1591514172430" />
+            </StatisticData>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
 </application>
