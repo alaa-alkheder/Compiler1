@@ -5,6 +5,7 @@
       <mapping pattern="*.js.flow" type="Flow" />
       <mapping ext="gradle.kts" type="Kotlin" />
       <mapping pattern="read me" type="PLAIN_TEXT" />
+      <mapping pattern="aesKeyEnc" type="PLAIN_TEXT" />
       <mapping pattern="temp" type="PLAIN_TEXT" />
       <mapping ext="enc" type="PLAIN_TEXT" />
     </extensionMap>
